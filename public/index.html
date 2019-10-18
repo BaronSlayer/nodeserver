@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <title>JQuery CSV to JSON</title>
+</head>
+
+<body>
+    <main>
+        <h1>CSV to JSON Test</h1>
+
+        <div class="container h-100">
+            <div class="row">
+                <div class="col-10 mx-auto my-auto">
+                    <div id="jsResponse"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        var csvFile = "./csv-to-json-test.csv";
+
+        $.ajax({
+            type: "GET",
+            url: csvFile,
+            dataType: "text",
+
+            error: function (e) {
+                alert("An error occurred while processing API calls");
+                console.log("API call Failed: ", e);
+            },
+
+            success: function (data) {
+                // console.log('data:');
+                // console.log(data);
+
+                var jsonData = $.csv.toObjects(data);
+                // console.log('jsonData:');
+                // console.log(jsonData);
+
+                $.each(jsonData, function (index, value) {
+                    $("#jsResponse").append(
+                        "<div>" +
+                        '<span class="d-inline col">' +
+                        value["first-name-nombre"] +
+                        "</span>" +
+                        '<span class="d-inline col">' +
+                        value["last-name-apellido"] +
+                        "</span>" +
+                        '<span class="d-inline col">' +
+                        value["e-mail-address"] +
+                        "</span>" +
+                        '<span class="d-inline col">' +
+                        value["phone-number-numero-de-telefono"] +
+                        "</span>" +
+                        '<span class="d-inline col">' +
+                        value["number-of-guests-cuantas-personas-te-acompanaran"] +
+                        "</span>" +
+                        '<span class="d-inline col">' +
+                        value["estimated-time-of-arrival-hora-esperada-de-llegada"] +
+                        "</span>" +
+                        '<span class="d-inline col">' +
+                        value["do-you-need-an-interpreter-necesita-un-interprete"] +
+                        "</span>" +
+                        "</div>"
+                    );
+                });
+            } // end: Ajax success API call
+        }); // end: of Ajax call
+    </script>
+
+    <footer></footer>
+    <script src="jquery.csv.js"></script>
+</body>
+
+</html>
