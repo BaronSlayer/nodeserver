@@ -1,0 +1,30 @@
+{
+	"name": "csv-to-json",
+	"version": "1.0.0",
+	"description": "Converts CSV file to JSON",
+	"main": "server.js",
+	"scripts": {
+		"start": "node server.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/BaronSlayer/nodeserver.git"
+	},
+	"author": "BaronSlayer",
+	"license": "MIT",
+	"devDependencies": {
+		"@babel/cli": "^7.4.4",
+		"@babel/core": "^7.0.0",
+		"@babel/node": "^7.4.5",
+		"@babel/preset-env": "^7.4.5"
+	},
+	"dependencies": {
+		"@babel/polyfill": "^7.4.4",
+		"bootstrap": "^4.3.1",
+		"cors": "^2.8.5",
+		"dotenv": "^8.0.0",
+		"express": "^4.17.0",
+		"jquery": "^3.4.1",
+		"popper.js": "^1.15.0"
+	}
+}
